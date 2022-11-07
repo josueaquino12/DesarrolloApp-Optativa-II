@@ -3,9 +3,6 @@ import React, {Component} from 'react'
 import '../App.css'
 import imgForm from '../img/imgForm.png'
 import{
-    BrowserRouter as Router,
-    Routes ,
-    Route,
     Link
     } from "react-router-dom";
 class HomePage extends Component{
@@ -21,7 +18,7 @@ class HomePage extends Component{
                 <div class="row justify-content-left">
                     <div class="col-xl-6">
                         <div class="text-left text-white">  
-                            <h1 class="mt-5">Unpaz Forms</h1>
+                            <h1 class="mt-5">UNPAZ Forms</h1>
                             <h3 class="mt-2">Comienza ahora y haz tu formulario!</h3>
                             
                            
