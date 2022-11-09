@@ -4,6 +4,11 @@ const bodyParser = require('body-parser')
 
 const sequelize = require('./config/database.js')
 
+const componenteRouter = require('./routes/componenteRouter.js')
+const formularioRouter = require('./routes/formularioRouter.js')
+const tipoComponenteRouter = require('./routes/tipoComponenteRouter.js')
+
+
 const app = express()
 const PORT = 3000
 app.use(cors())
@@ -22,6 +27,9 @@ app.get('/ping', (req, res) => {
 /////////////////////////////////////////////
 // ENDPOINTS PARA LAS RUTAS PÚBLICAS
 ////////////////////////////////////////////
+app.use('/api/v1/componente/', componenteRouter)
+app.use('/api/v1/formulario/', formularioRouter)
+app.use('/api/v1/tipocomponente/', tipoComponenteRouter)
 
 app.listen(PORT, async () => {
     try {

@@ -6,63 +6,60 @@ const Moment = require('moment-timezone')
 
 Moment.locale('es')
 
-const Formulario = sequelize.define('formulario',{
-    idFormulario: {
+const Formulario = sequelize.define('formulario', {
+    idformulario: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
-        allowNull:false,
-        primaryKey:true
+        allowNull: false,
+        primaryKey: true
     },
-    titulo:{
+    titulo: {
         type: Sequelize.STRING,
-        allowNull:false
+        allowNull: false
     },
-    descripcion:{
+    descripcion: {
         type: Sequelize.STRING,
-        allowNull:true
+        allowNull: false
     },
-    linkAcceso:{
+    linkacceso: {
         type: Sequelize.STRING,
-        allowNull:false
+        allowNull: false
     },
-    codigoAcceso:{
-        type:Sequelize.STRING,
-        allowNull:false  
+    codigoacceso: {
+        type: Sequelize.STRING,
+        allowNull: false
     },
-    createdAt:{
-        type:Sequelize.DATE,
+    createdAt: {
+        type: Sequelize.DATE,
         get() {
             return Moment(
-                this.getDataValue('createAt')
-            
+                this.getDataValue('createdAt')
+            )
             .tz("America/Argentina/Buenos_Aires")
             .format('LLLL')
+        }
+    },
+    updatedAt: {
+        type: Sequelize.DATE,
+        get() {
+            return Moment(
+                this.getDataValue('updatedAt')
             )
+            .tz("America/Argentina/Buenos_Aires")
+            .format('LLLL')
+        }
+    },
+    deletedAt: {
+        type: Sequelize.DATE,
+        get() {
+            return Moment(
+                this.getDataValue('deletedAt')
+            )
+            .tz("America/Argentina/Buenos_Aires")
+            .format('LLLL')
         }
     },
 
-    updateAt:{
-        type:Sequelize.DATE,
-        get() {
-            return Moment(
-                this.getDataValue('updateAt')
-            .tz("America/Argentina/Buenos_Aires")
-            .format('LLLL')
-            )
-        }
-    },
-
-    deleteAt:{
-        type:Sequelize.DATE,
-        date() {
-            return Moment(
-                this.getDataValue('deleteAt')
-                .tz("America/Argentina/Buenos_Aires")
-                .format('LLLL')
-            )
-        }
-    },
-    
-}, { schema: 'public'})
+}, { schema: 'public' })
 
 module.exports = Formulario

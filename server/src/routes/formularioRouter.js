@@ -1,13 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const personaController = require("../controllers/personaController");
+const formularioController = require("../controllers/formularioController");
 
-router.get("/:id", formularioController.getFormularioId);
+//router.get("/:id", formularioController.getFormularioId);
 
-router.delete("/:id", formularioController.delete);
+//router.delete("/:id", formularioController.delete);
 
 router.get("/:id/estadisticas", formularioController.getEstadisticas);
 
 router.post("/", formularioController.post);
+
+router.get("/prueba", formularioController.getPrueba);
 
 module.exports = router;

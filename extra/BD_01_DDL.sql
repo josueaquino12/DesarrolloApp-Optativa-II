@@ -1,9 +1,9 @@
 CREATE TABLE "formulario" (
-  "idFormulario" SERIAL PRIMARY KEY,
+  "idformulario" SERIAL PRIMARY KEY,
   "titulo" varchar(160),
   "descripcion" varchar(160),
-  "linkAcceso" varchar(200),
-  "codigoAcceso" varchar(50),
+  "linkacceso" varchar(200),
+  "codigoacceso" varchar(50),
   "createdAt" timestamp with time zone,
   "updatedAt" timestamp with time zone,
   "deletedAt" timestamp with time zone
