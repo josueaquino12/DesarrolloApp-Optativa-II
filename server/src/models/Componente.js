@@ -6,59 +6,56 @@ const Moment = require('moment-timezone')
 
 Moment.locale('es')
 
-const Formulario = sequelize.define('componente',{
-    idComponente: {
+const Componente = sequelize.define('componente', {
+    idcomponente: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
-        allowNull:false,
-        primaryKey:true
+        allowNull: false,
+        primaryKey: true
     },
-    idFormulario:{
+    idformulario: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    idtipocomponente: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    labelname: {
         type: Sequelize.STRING,
-        allowNull:false
+        allowNull: false
     },
-    idTipoComponente:{
-        type: Sequelize.STRING,
-        allowNull:false
-    },
-    labelname:{
-        type: Sequelize.STRING,
-        allowNull:true
-    },
-    createdAt:{
-        type:Sequelize.DATE,
+    createdAt: {
+        type: Sequelize.DATE,
         get() {
             return Moment(
-                this.getDataValue('createAt')
-            
+                this.getDataValue('createdAt')
+            )
             .tz("America/Argentina/Buenos_Aires")
             .format('LLLL')
-            )
         }
     },
-
-    updateAt:{
-        type:Sequelize.DATE,
+    updatedAt: {
+        type: Sequelize.DATE,
         get() {
             return Moment(
-                this.getDataValue('updateAt')
+                this.getDataValue('updatedAt')
+            )
             .tz("America/Argentina/Buenos_Aires")
             .format('LLLL')
-            )
         }
     },
-
-    deleteAt:{
-        type:Sequelize.DATE,
-        date() {
+    deletedAt: {
+        type: Sequelize.DATE,
+        get() {
             return Moment(
-                this.getDataValue('deleteAt')
-                .tz("America/Argentina/Buenos_Aires")
-                .format('LLLL')
+                this.getDataValue('deletedAt')
             )
+            .tz("America/Argentina/Buenos_Aires")
+            .format('LLLL')
         }
     },
-    
-}, { schema: 'public'})
 
-module.exports = Formulario
+}, { schema: 'public' })
+
+module.exports = Componente

@@ -6,55 +6,52 @@ const Moment = require('moment-timezone')
 
 Moment.locale('es')
 
-const TipoComponente = sequelize.define('tipoComponente',{
-    idTipoComponente: {
+const TipoComponente = sequelize.define('tipocomponente', {
+    idtipocomponente: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
-        allowNull:false,
-        primaryKey:true
+        allowNull: false,
+        primaryKey: true
     },
-    nombreComponente:{
+    nombrecomponente: {
         type: Sequelize.STRING,
-        allowNull:false
+        allowNull: false
     },
-    Descripcion:{
+    descripcion: {
         type: Sequelize.STRING,
-        allowNull:false
+        allowNull: false
     },
-    createdAt:{
-        type:Sequelize.DATE,
+    createdAt: {
+        type: Sequelize.DATE,
         get() {
             return Moment(
-                this.getDataValue('createAt')
-            
+                this.getDataValue('createdAt')
+            )
             .tz("America/Argentina/Buenos_Aires")
             .format('LLLL')
+        }
+    },
+    updatedAt: {
+        type: Sequelize.DATE,
+        get() {
+            return Moment(
+                this.getDataValue('updatedAt')
             )
+            .tz("America/Argentina/Buenos_Aires")
+            .format('LLLL')
+        }
+    },
+    deletedAt: {
+        type: Sequelize.DATE,
+        get() {
+            return Moment(
+                this.getDataValue('deletedAt')
+            )
+            .tz("America/Argentina/Buenos_Aires")
+            .format('LLLL')
         }
     },
 
-    updateAt:{
-        type:Sequelize.DATE,
-        get() {
-            return Moment(
-                this.getDataValue('updateAt')
-            .tz("America/Argentina/Buenos_Aires")
-            .format('LLLL')
-            )
-        }
-    },
-
-    deleteAt:{
-        type:Sequelize.DATE,
-        date() {
-            return Moment(
-                this.getDataValue('deleteAt')
-                .tz("America/Argentina/Buenos_Aires")
-                .format('LLLL')
-            )
-        }
-    },
-    
-}, { schema: 'public'})
+}, { schema: 'public' })
 
 module.exports = TipoComponente
