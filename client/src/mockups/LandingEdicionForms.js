@@ -3,28 +3,24 @@ import React, {Component} from 'react'
 import '../App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../components/AgregarCampoCasilla.js'
-import AgregarCampoCasilla from '../components/AgregarCampoCasilla.js';
+//import AgregarCampoCasilla from '../components/AgregarCampoCasilla.js';
 import AgregarCampoOpcion from '../components/AgregarCampoOpcion';
-import ComboTareas from '../components/ComboTareas';
+//import ComboTareas from '../components/ComboTareas';
+import AgregarCampoTexto from '../components/AgregarTexto';
  
 class LandingEdicionForms extends Component{
 
   state = {
-    checks : [],
     radio : [],
-    
-}
+    text: [],
+    campos: []    
+  }
 
 
     render() {
-
-      const {checks, radio} = this.state;
-
-      const handlerCheck = () => {
-        const newTareas = [...checks]
-        this.setState( { checks :newTareas 
-         } )
-      }
+      
+      const {campos} = this.state;
+      /*const { radio, text} = this.state;
 
       const handlerRadio = () => {
         const newTareas = [...radio]
@@ -32,26 +28,56 @@ class LandingEdicionForms extends Component{
          } )
       }
 
-
-
-      const handlerAddField = () =>{ 
-      const newTareas = [...checks]
-      newTareas.push({"nombre":"Agrege la pregunta aqui"})
-      this.setState( { checks :newTareas } )
+      const handlerText = () => {
+        const newTareas = [...text]
+        this.setState( { text :newTareas 
+         } )
       }
 
 
-      const handlerAddField2 = () =>{ 
+      const handlerAddField = () =>{ 
         const newTareas = [...radio]
-        newTareas.push({"nombre":"Agrege la pregunta aqui"})
-        this.setState( { radio :newTareas } )
+        newTareas.push({ id : 0, label: "Escriba la pregunta aqui", true: "Sí", false: "No" })
+        this.setState({radio :newTareas })
         }
+
+        const handlerAddText = () => {
+          const newTareas = [...text]
+          newTareas.push({ id : 0, label: "Escriba la pregunta aqui", value: "Agrege la respuesta aquí" })
+          this.setState( { text :newTareas } )
+         }*/
+
+
+         const handlerField = () => {
+          const newTareas = [...campos]
+          this.setState( { campos :newTareas } )
+        
+        }
+
+
+         const handlerAddField = (event) => {
+          const newTareas = [...campos]
+          if (event == "1")
+          {
+            newTareas.push({label: "Escriba la pregunta", value: "Agrege la respuesta aquí" })
+          } 
+          else if (event == "2")
+          {
+            newTareas.push({label: "Escriba la pregunta aqui", true: "Sí", false: "No" })
+          } 
+
+            this.setState( { campos :newTareas } )
+         }
+    
 
 
       const handlerAddTitle = () => {
        
         alert("Botón Presionado")
      }
+
+    
+
         return(
             
         <div class="container">
@@ -67,68 +93,25 @@ class LandingEdicionForms extends Component{
                 
                 <div class="border-bottom border-dark"></div>
                 <br></br>
-
-                
-
-                <div class="row">
-                    <div class="col-auto"><label for="campname">Nombre del campo</label></div>
-                    <div class="col-auto"><input type="text" id="campname"></input></div>
-                    <div class="col offset-md-4"><i class="fa-solid fa-xmark"></i></div>   
-                </div>
-
-                <div class="row">
-                <div class="col-auto"><label for="campname">Nombre del campo</label></div>
-                <div class="col-auto">
-                    <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
-                    <label class="form-check-label" for="flexRadioDefault1">Si</label>
-                    </div>
-                    <div class="form-check">
-                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked></input>
-                     <label class="form-check-label" for="flexRadioDefault2">No</label>
-                     </div>
-                </div>
-                <div class="col offset-md-4"><i class="fa-solid fa-xmark"></i></div>
-                </div>  
-                
-                {/*{cantidadTareasIncompletas > 0 && <ComboTareas lista={tareas} filtro={false} cantidadTareas= {cantidadTareasIncompletas}/>}
-                {cantidadTareasCompletas > 0 && <ComboTareas lista={tareas} filtro={true} cantidadTareas= {cantidadTareasCompletas}/>}*/}
-                <br></br>
-                { /*<AgregarCampoCasilla lista={tareas} handlerCheck={handlerCheck}/> ? <AgregarCampoCasilla lista={tareas} handlerCheck={handlerCheck}/> : <AgregarCampoOpcion lista={tareas} handlerCheck={handlerCheck}/>*/}
-                <AgregarCampoCasilla lista={checks} handlerCheck={handlerCheck}/> 
-                <AgregarCampoOpcion lista={radio} handlerRadio={handlerRadio}/>
-                
-                
               
+    
+                {handlerAddField ? ( <AgregarCampoTexto lista={campos} handlerText={handlerField}/>) : (<AgregarCampoOpcion lista={campos} handlerRadio={handlerField}/>)}
+
                 <br></br>
                 <i class="fa-solid fa-trash-can"></i>
+                <button type="button" class="btn btn-outline-success btn-lg">Visualizar<i class="fa-solid fa-pen-to-square"></i></button>
               </div>
        
              {/*Panel publicidad*/}
               <div class="col-3  border border-5">
-              <h1>Campos para agregar al formulario</h1>
+              <h3 class="text-center">Campos para agregar al formulario</h3>
             
-             <button type="button" onClick={handlerAddTitle} class="btn btn-outline-success btn-lg">Agregar Título</button>
+            {/*<button type="button" onClick={handlerAddText} class="btn btn-outline-success btn-lg">Agregar Texto <i class="fa-solid fa-pen-to-square"></i></button>*/}
+             <button type="button" onClick={() =>handlerAddField(1)}  class="btn btn-outline-success btn-lg">Agregar Texto <i class="fa-solid fa-pen-to-square"></i></button>
              <br></br>
              <br></br>
-            
-             
-            
-             {/*<input id="tareatext" type="text" ref={ele => this.campoAgregar = ele}/>*/}
-           
-               
-            
-             
-             
-             <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
-               <button type="button" onClick={handlerAddField} class="btn btn-outline-danger btn-lg">Casilla <i class="fa-regular fa-square-check"></i></button>
-               <button type="button" onClick={handlerAddField2} class="btn btn-outline-danger btn-lg">Opción <i class="fa-regular fa-circle-dot"></i></button>
-               <button type="button" class="btn btn-outline-danger btn-lg">Button</button>
-               <button type="button" class="btn btn-outline-danger btn-lg">Button</button>
-               <button type="button" class="btn btn-outline-danger btn-lg">Button</button>
-               <button type="button" class="btn btn-outline-danger btn-lg">Button</button>
-               <button type="button" class="btn btn-outline-danger btn-lg">Button</button>
-              </div>
+             <button type="button" onClick={() =>handlerAddField(2)}  class="btn btn-outline-danger btn-lg">Condicional <i class="fa-regular fa-circle-dot"></i></button>
+              
 
             </div>
             </div>
