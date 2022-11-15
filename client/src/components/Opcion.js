@@ -32,19 +32,6 @@ class Opcion extends Component {
                     <label class="form-check-label" for="flexRadioDefault1">{tarea.false}</label>
                     </div>
 
-                   {/* 
-                    <input class="form-control" type="text" placeholder="Escribir pregunta"></input>  
-                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"  onChange={handlerOnChange}></input>
-                    <label class="form-check-label" for="flexRadioDefault2">{tarea.nombre}</label>
-                     </div>
-
-                    <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"  onChange={handlerOnChange}></input>
-                    <label class="form-check-label" for="flexRadioDefault3">{tarea.nombre}</label>
-        </div>*/}
-
-
                     </div>
                     
                 
