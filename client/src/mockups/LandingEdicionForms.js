@@ -4,7 +4,7 @@ import '../App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class LandingEdicionForms extends Component{
-
+//prueba
     constructor(props) {
       super(props)
       this.state = { 
