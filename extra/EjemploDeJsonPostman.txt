@@ -1,0 +1,8 @@
+//ejemplo post crear formulario
+{
+    "titulo":"tituloprueba",
+    "descripcion":"descripcionprueba",
+    "linkacceso":"linkprueba",
+    "codigoacceso":"codigoaccesoprueba"
+    
+}
