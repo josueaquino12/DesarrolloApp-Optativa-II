@@ -2,197 +2,158 @@
 import React, {Component} from 'react'
 import '../App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../components/AgregarCampoCasilla.js'
-//import AgregarCampoCasilla from '../components/AgregarCampoCasilla.js';
-import AgregarCampoOpcion from '../components/AgregarCampoOpcion';
-//import ComboTareas from '../components/ComboTareas';
-import AgregarCampoTexto from '../components/AgregarTexto';
-import LandingFormulario from './LandingFormulario'
- 
+
 class LandingEdicionForms extends Component{
 
-  state = {
-    radio : [],
-    text: [],
-   
-   /* campos: [
-     { 
-     
-      "text": [{label: "Escriba la pregunta", value: "Agrege la respuesta aquí"}] ,
-      "radio": [{label: "Escriba la pregunta aqui", true: "Sí", false: "No"}]}] ,*/
-     campos:[],
-
+    constructor(props) {
+      super(props)
+      this.state = { 
+        titulo_desc:{label: '', value: ''},
+        resetTitle: {label: '', value: ''}, 
+        campos : [],
+        resetFields: [],      
+  
+       };
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleChangeTitle = this.handleChangeTitle.bind(this);
     }
 
-    render() {
-      
-      const {campos} = this.state;
-      /*const { radio, text} = this.state;
 
-      const handlerRadio = () => {
-        const newTareas = [...radio]
-        this.setState( { radio :newTareas 
-         } )
-      }
+    
+          handleChangeTitle(e) {
+            const { name, value } = e.target
+            this.setState({
+              titulo_desc: {
+                ...this.state.titulo_desc,
+                [name]: value,
+              },
+            })
+          }
 
-      const handlerText = () => {
-        const newTareas = [...text]
-        this.setState( { text :newTareas 
-         } )
-      }
+          handleChange(i, e) {
+            let newFields = this.state.campos;
+            newFields[i][e.target.name] = e.target.value;
+            this.setState({ newFields });
+            }
 
 
-      const handlerAddField = () =>{ 
-        const newTareas = [...radio]
-        newTareas.push({ id : 0, label: "Escriba la pregunta aqui", true: "Sí", false: "No" })
-        this.setState({radio :newTareas })
-        }
+         handlerAddField = () => {
+          this.setState(({
+            campos: [...this.state.campos, {label: "", value: ""}]
+          }))
+         }
+    
+        removeFormFields = (i) => {
+          let formValues = [...this.state.campos];
+          formValues.splice(i, 1);
+          this.setState({ campos :formValues });
+         }
 
-        const handlerAddText = () => {
-          const newTareas = [...text]
-          newTareas.push({ id : 0, label: "Escriba la pregunta aqui", value: "Agrege la respuesta aquí" })
-          this.setState( { text :newTareas } )
-         }*/
-         
-        /* const lista = campos.map(
-          t => (
-              <div key={t}>
-                 
-                 <div class="col-auto">
-                 <input class="form-control" type="text" placeholder={campos.label} ></input>  
-                 <input class="form-control" type="text" placeholder={campos.value} ></input>  
-                 </div>
-                 {
-                  
-                  campos.length  ?  
- 
-                  <button type="button"  className="btn btn-outline-danger btn-lg" onClick={() => removeFormFields(t)}><i class="fa-solid fa-trash-can"></i></button> 
-                   
-                  : null
- 
-                 }
-              </div>
-               )
-          )*/
+         handlerAddTitle = () => {
+          this.setState(({
+            titulo_desc: [...this.state.titulo_desc, {label: "", value: ""}]
+          }))
+         }
+          
+          handleSubmit = (event) => {
 
-         const handlerField = () => {
-         /* const newTareas = [...campos]
-          this.setState( { campos :newTareas } )
+          event.preventDefault();
+          
+         // alert(JSON.stringify("Titulo y descripción "+ this.state.titulo_desc +" - Campos "+ this.state.campos+ " guardados."));
+        alert(JSON.stringify(this.state.titulo_desc)); 
+        alert(JSON.stringify(this.state.campos));
+        
 
-          let newTareas = [...campos];
-          newTareas[i][e.target.name] = e.target.value;
-          this.setState({ newTareas });*/
+        this.setState({campos : this.state.resetFields,
+          titulo_desc : this.state.resetTitle})
         
         }
 
-
-
-         const handlerAddField = (event) => {
-          const newTareas = [...campos]
-          if (event === "text")
-          {
-            newTareas.push({label: "Escriba la pregunta", value: "Agrege la respuesta aquí" })
-            
-          } 
-          else if (event === "radio")
-          {
-            newTareas.push({label: "Escriba la pregunta aqui", true: "Sí", false: "No" })
-           
-          } 
-
-            this.setState( { campos :newTareas } )
-
-           // this.setState([...campos, { label: "", value: "" }])
-          return event;
-
-         }
-    
-
-         const removeFormFields = (i) => {
-          let formValues = [...campos];
-          formValues.splice(i, 1);
-          this.setState({ campos :formValues });
-        }
-
-
-      const handlerAddTitle = () => {
-       
-        alert("Botón Presionado")
-     }
-
-    
-
+    render() {
+      
         return(
             
         <div class="container">
             <div class="row">
               {/*Panel publicidad*/}
-              <div class="col-3  border border-5"><h1>Publicidad</h1></div>
+              <div class="col-3  border border-5"><h1>Publicidad</h1></div> 
               {/*Panel de creacion del formulario*/}
               <div class="col-6  border border-5">
-                {/*<h1>Título del formulario</h1>*/}
-                {/*<h3>Descripción</h3>*/}
-                <input type="text" class="form-control" placeholder="Título del formulario" aria-label="Título del formulario"></input>
-                <input type="text" class="form-control" placeholder="Descripción" aria-label="Descripción"></input>
+                 <br></br>
+               
+            <form  onSubmit={this.handleSubmit}>
+
+                <label for="title">Título del formulario</label>
+                <input id="title" type="text" name="label" class="form-control" placeholder={this.state.titulo_desc.label} aria-label="Título del formulario" onChange={this.handleChangeTitle} required></input>
                 
+                <label for="desc">Descripción</label>
+                <input id="desc"  type="text" name="value" class="form-control" placeholder={this.state.titulo_desc.value} aria-label="Descripción" onChange={this.handleChangeTitle} ></input>
+                <br></br>
                 <div class="border-bottom border-dark"></div>
                 <br></br>
-              
-          {campos.map((element, index) => (
-           <div className="form-inline" key={index}>
+
+              {this.state.campos.map((element, index) => (
+
+
+                <div className="container form-inline" key={index} >
                  
+                 <div class="row">
+
                  {
-                  handlerAddField == "text" ? <div class="col-auto">
-                  <input class="form-control" type="text" placeholder="{campos.label}" ></input>  
-                  <input class="form-control" type="text" placeholder="{campos.value}" ></input>  
-                  </div> : 
-                   <div class="col-auto">
+                   <div class="col-10">
+                  <label for="ask">Agregue la pregunta aquí</label>
+                  <input id="ask" class="form-control" name="label" type="text" placeholder={element.label } onChange={e => this.handleChange(index, e)} required></input>  
+                
+                  <input class="form-control" name="value" type="text" placeholder={element.value }  onChange={e => this.handleChange(index, e)} ></input>  
+                  </div> 
 
-
-                   <input class="form-control" type="text" placeholder="por favor"></input>
-                   <div class="form-check">
-                   <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked onChange={handlerField}></input>
-                   <label class="form-check-label" for="flexRadioDefault1">Si</label>
-                   </div>
-
-                   <div class="form-check">
-                   <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked onChange={handlerField}></input>
-                   <label class="form-check-label" for="flexRadioDefault1">No</label>
-                   </div>
-
-                   </div>
-                    
                  }
                  
 
-              {
-                campos.length  ? 
-                  <button type="button"  className="btn btn-outline-danger btn-lg" onClick={() => removeFormFields(index)}><i class="fa-solid fa-trash-can"></i></button> 
-                : null
-              }
-            </div>
-            ))}
+                 
+                 {
+                 index + 1 ?
+                 <div class="col-2"> 
+                  <button type="button"  className="btn btn-outline-danger btn-lg" onClick={() => this.removeFormFields(index)}><i class="fa-solid fa-trash-can"></i></button>
+                  
+                  </div> 
+                  
+                  : null
+                 }
+                 
+                 
+                </div> 
+                <br></br>
+               </div>
+                
+
+              ))}
                 
                          
                 <br></br>
-                
-                <button type="button" class="btn btn-outline-success btn-lg">Visualizar<i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="btn btn-outline-success btn-lg" type="submit">Guardar<i class="fa-solid fa-pen-to-square"></i></button>
+              </form> 
               </div>
-       
-             {/*Panel publicidad*/}
-              <div class="col-3  border border-5">
-              <h3 class="text-center">Campos para agregar al formulario</h3>
-            
-            {/*<button type="button" onClick={handlerAddText} class="btn btn-outline-success btn-lg">Agregar Texto <i class="fa-solid fa-pen-to-square"></i></button>*/}
-             <button type="button" onClick={() =>handlerAddField("text")}  class="btn btn-outline-success btn-lg">Agregar Texto <i class="fa-solid fa-pen-to-square"></i></button>
-             <br></br>
-             <br></br>
-             <button type="button" onClick={() =>handlerAddField("radio")}  class="btn btn-outline-danger btn-lg">Condicional <i class="fa-regular fa-circle-dot"></i></button>
-            
-            
-            </div>
-            </div>
+             
+             {/*Panel Agregar Campos*/}
+                     <div class="col-3 border border-5">
+                        <div class="container text-center">
+                         <div class="row align-items-start">
+                            <div class="col">
+                            <h3 class="text-center">Campos para agregar al formulario</h3>
+                            </div>
+                         </div>
+                         <div class="col">
+                          <br></br>
+                           <button type="button" onClick={() =>this.handlerAddField()}  class="btn btn-outline-success btn-lg">Agregar Texto<i class="fa-solid fa-pen-to-square"></i></button>
+                         </div>
+                        </div>
+                      <br></br>
+                      <br></br>
+                      {/*<button type="button" onClick={() =>this.handlerAddField()}  class="btn btn-outline-danger btn-lg">Condicional <i class="fa-regular fa-circle-dot"></i></button>*/}
+                     </div>
           </div>
+        </div>
         )
     }
 }
