@@ -14,7 +14,7 @@ class Navbar extends Component{
        
             <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-            <NavLink to="/"><a class="navbar-brand" href="#">UNPAZ FORMS</a></NavLink>
+            <NavLink to="/"><a class="navbar-brand" href="*">UNPAZ FORMS</a></NavLink>
             </div>
             </nav>
 

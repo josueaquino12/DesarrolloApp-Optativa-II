@@ -5,13 +5,12 @@ import NotFound404 from './mockups/NotFound404';
 import Navbar from './components/Navbar';
 import LandingEdicionForms from './mockups/LandingEdicionForms';
 import LandingEstadisticasForms from './mockups/LandingEstadisticasForms';
-
+import LandingFormularioGuardar from './mockups/LandingFormularioGuardar';
 
 import{
   BrowserRouter as Router,
   Routes ,
   Route,
-  Link
   } from "react-router-dom";
 
 
@@ -27,10 +26,9 @@ function App() {
               <Route path="/" element={<HomePage/>}/> 
               <Route path='*' element={<NotFound404/>} />
               <Route path='/landingEdicionForms' element={<LandingEdicionForms/>} />
-              <Route path='/landingEstadisticasForms' element={<LandingEstadisticasForms/>} />     
+              <Route path='/landingEstadisticasForms' element={<LandingEstadisticasForms/>} /> 
+              <Route path='/landingFormularioGuardar/' element={<LandingFormularioGuardar/>} />
             </Routes>
-           
-
         </Router>      
     </div>
   );
