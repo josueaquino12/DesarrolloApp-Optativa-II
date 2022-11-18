@@ -2,8 +2,8 @@ const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize(
     'unpazform',
-    'bcoronel',
-    'bcoronel1234',
+    'postgres',
+    '1234',
     {
         host:'localhost',
         dialect:'postgres',

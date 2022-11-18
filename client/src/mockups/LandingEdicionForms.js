@@ -11,32 +11,15 @@ const urlpost = "http://localhost:3001/api/v1/formulario/";
 const urlget = "http://localhost:3001/api/v1/formulario/";
 
 //constande de prueba para renderizar
-const componentesprueba = [
-  { idComponente: uuid(), tipocomponente: "text", labelname: uuid() },
-  { idComponente: uuid(), tipocomponente: "condicional", labelname: "pregunta2" },
-  { idComponente: uuid(), tipocomponente: "text", labelname: "pregunta3" },
-  { idComponente: uuid(), tipocomponente: "text", labelname: "pregunta4" },
-  { idComponente: uuid(), tipocomponente: "condicional", labelname: "pregunta5" }
-];
-
-
-const prueba ={
-  titulo:"tituloprueba",
-  descripcion:"descripcionprueba",
-  linkacceso:"linkprueba",
-  codigoacceso:"codigoaccesoprueba",
-  componentes:[{
-      labelname:"preg",
-      idtipocomponente:"text"
-  },
-  {
-      labelname:"preg2",
-      idtipocomponente:"text"
-  }]
-}
+/*const componentesprueba = [
+  { idComponente: uuid(), idtipocomponente: "text", labelname: uuid() },
+  { idComponente: uuid(), idtipocomponente: "condicional", labelname: "pregunta2" },
+  { idComponente: uuid(), idtipocomponente: "text", labelname: "pregunta3" },
+  { idComponente: uuid(), idtipocomponente: "text", labelname: "pregunta4" },
+  { idComponente: uuid(), idtipocomponente: "condicional", labelname: "pregunta5" }
+];*/
 
 class LandingEdicionForms extends Component {
-
 
   //estado
   state = {
@@ -44,12 +27,9 @@ class LandingEdicionForms extends Component {
     descripcion: '',
     linkacceso:"linkprueba",
     codigoacceso:"codigoaccesoprueba",
-    componentes: componentesprueba,
+    componentes:[],
     preview: 1,
   }
-
-
-
 
   peticionGet=()=>{
     axios.get(urlget).then(response=>{
@@ -62,18 +42,15 @@ class LandingEdicionForms extends Component {
       console.log(response)
       return response;
     })
-    
   }
-
-  
 
   //captura el titulo y la desc para guardarlo en el estado
   handleChangeTitulo = e => {
-
     this.setState({
       titulo: e.target.value})
    
   }
+
   //creo que no hace falta porque trae el nombre a cambiar en "e" lo dejo por las dudas
   handleChangeDescripcion = e => {
     this.setState({
@@ -90,13 +67,12 @@ class LandingEdicionForms extends Component {
         break;
       }
     }
-
   }
 
   insertarComponenteEnLista = (tipoC) => {
     var componente = {
       idComponente: uuid(),
-      tipocomponente: tipoC,
+      idtipocomponente: tipoC,
       labelname: ''
     }
     var listaComponentes = this.state.componentes
@@ -105,9 +81,7 @@ class LandingEdicionForms extends Component {
   }
 
   render() {
-
     const handlerField = () => {
-
 
     }
     const handleGuardar = (e) => {
@@ -196,10 +170,6 @@ class LandingEdicionForms extends Component {
               <br></br>
               <br></br>
               <button type="button" onClick={() => this.insertarComponenteEnLista("radio")} class="btn btn-outline-danger btn-lg">Condicional <i class="fa-regular fa-circle-dot"></i></button>
-              <br></br>
-              <br></br>
-              <button type="button" onClick={() => handlerVerEstados()} class="btn btn-outline-danger btn-lg">ver Estados </button>
-
             </div>
           </div>
         </div>
@@ -253,7 +223,7 @@ class LandingEdicionForms extends Component {
               ))}
               <br></br>
               <button onClick={() => cambiarModoPreview(1)} type="button" class="btn btn-outline-success btn-lg">Atras <i class="fa-solid fa-arrow-left"></i></button>
-              <button type="button" class="btn btn-light btn-lg" onClick={() => handleGuardar(3)}>Guardar</button>
+              <button type="button" class="btn btn-light btn-lg" onClick={() => handleGuardar(3)}>Guardar <i class="fas fa-save"></i></button>
             </div>
 
             {/*Panel publicidad*/}

@@ -10,7 +10,7 @@ const tipoComponenteRouter = require('./routes/tipoComponenteRouter.js')
 
 
 const app = express()
-const PORT = 3000
+const PORT = 3001
 app.use(cors())
 
 // Parse body application/json
