@@ -7,8 +7,8 @@ import GuardadoExitoso from '../components/GuardarExitoso'
 import GuardadoFallido from '../components/GuardarFallido'
 import axios from 'axios'
 
-const urlpost = "http://localhost:3001/api/v1/formulario/";
-const urlget = "http://localhost:3001/api/v1/formulario/";
+const urlpost = "http://localhost:5001/api/v1/formulario/";
+const urlget = "http://localhost:5001/api/v1/formulario/";
 
 //constande de prueba para renderizar
 /*const componentesprueba = [
@@ -96,9 +96,6 @@ class LandingEdicionForms extends Component {
       
     }
 
-    const handlerVerEstados = (e) => {
-
-    }
 
     const cambiarModoPreview = (e) => {
       this.setState({ preview: e })
@@ -132,13 +129,17 @@ class LandingEdicionForms extends Component {
                 <div className="form-inline" key={element.idComponente}>
                   {
 
-                    element.tipocomponente === "text" ? <div class="col-auto">
+                    element.idtipocomponente === "text" ? <div class="col-auto">
+                      <hr></hr>
                       <input name={element.idComponente} class="form-control" type="text" placeholder="Pregunta texto" onChange={this.handleChangeComponentes} value={element.labelname} ></input>
-                      <input class="form-control" type="text" placeholder="Respuesta" ></input>
+                      
 
                     </div> :
+                    
                       <div class="col-auto">
+                        <hr></hr>
                         <input name={element.idComponente} class="form-control" type="text" placeholder="pregunta condicional" value={element.labelname} onChange={this.handleChangeComponentes}></input>
+                        
                         <div class="form-check">
                           <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked onChange={handlerField}></input>
                           <label class="form-check-label" for="flexRadioDefault1">Si</label>
@@ -196,7 +197,7 @@ class LandingEdicionForms extends Component {
                 <div className="form-inline" key={index}>
                   {
 
-                    element.tipocomponente === "text" ?
+                    element.idtipocomponente === "text" ?
                       <div class="col-auto">
                         <hr></hr>
                         <input name={element.idComponente} class="form-control" type="text" placeholder="Pregunta texto" value = {element.labelname} disabled></input>

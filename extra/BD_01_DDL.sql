@@ -12,7 +12,7 @@ CREATE TABLE "formulario" (
 CREATE TABLE "componente" (
   "idcomponente" SERIAL PRIMARY KEY,
   "idformulario" int,
-  "idtipocomponente" int,
+  "idtipocomponente" varchar(50),
   "labelname" varchar(50),
   "createdAt" timestamp with time zone,
   "updatedAt" timestamp with time zone,
