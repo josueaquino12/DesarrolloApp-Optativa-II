@@ -1,23 +1,22 @@
 const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize(
-    'unpazform',
-    'postgres',
-    '1234',
+    `${process.env.POSTGRES_DB}`,
+    `${process.env.POSTGRES_USER}`,
+    `${process.env.POSTGRES_PASSWORD}`,
     {
-        host:'localhost',
-        dialect:'postgres',
-        logging: (str) => { console.log("Sequalize" + str) },
-        define: {
-            freezeTableName:true,
-            paranoid:true
-        },
-        operatorsAliases:0,
-        dialectOptions:{
-            prependSearchPath: true
-        },
-        timezone: '-03:00',
+    host: `puntajes-bd`,
+    dialect: 'postgres',
+    logging: (str) => { console.log("Sequelize: "+str) },
+    define: {
+        freezeTableName: true,
+        paranoid: true
+    },
+    operatorsAliases: 0,
+    dialectOptions: {
+        prependSearchPath: true
+    },
+    timezone: '-03:00',
+})
 
-    }
-)
 module.exports = sequelize

@@ -1,5 +1,13 @@
-FROM node:16.17.0-bullseye
+FROM node:16
 
 WORKDIR /app
 
-CMD ["npm", "run", "ejecutar"]
+COPY package*.json /app/
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 3001
+
+CMD ["node", "app.js"]
