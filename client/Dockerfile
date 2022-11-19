@@ -1,15 +1,10 @@
 FROM node:16
-
 WORKDIR /app
-
 COPY . /app
-
 RUN npm install
-
-RUN npm i -g serve
-
+COPY ./package.json ./
 RUN npm run build
+RUN npm install -g serve@10.1.1
+EXPOSE 3000
+CMD ["serve", "-s" , "build"]
 
-EXPOSE 5004
-
-CMD ["serve", "-s", "build"]

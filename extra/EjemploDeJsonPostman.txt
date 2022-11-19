@@ -3,6 +3,14 @@
     "titulo":"tituloprueba",
     "descripcion":"descripcionprueba",
     "linkacceso":"linkprueba",
-    "codigoacceso":"codigoaccesoprueba"
+    "codigoacceso":"codigoaccesoprueba",
+    "componentes":[{
+        "labelname":"preg",
+        "idtipocomponente":"text"
+    },
+    {
+        "labelname":"preg2",
+        "idtipocomponente":"text"
+    }]
     
 }

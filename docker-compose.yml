@@ -1,22 +1,64 @@
 version: '3'
 
 services:
-  api-server:
+#################
+  puntajes-api:
     build:
-      context: ./server
+      context: ./server/src
       dockerfile: Dockerfile
-    container_name: api-server
+    container_name: puntajes-api
+    ports:
+      - "5001:8080"
+    volumes:
+      - ./server/src:/app
+    networks:
+      - app_puntajes
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+######################
+  puntajes-bd:
+    image: postgres:14.5-bullseye
+    container_name: puntajes-bd
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes: 
+      - ./extra/BD_01_DDL.sql:/docker-entrypoint-initdb.d/BD_01_DDL.sql
+      - volumen_bd_puntajes:/var/lib/postgresql/data
+    networks:
+      - app_puntajes
+####################
+  puntajes-frontend-web:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: puntajes-frontend-web
     ports:
       - "5000:3000"
     volumes:
-      - ./server/src:/app
-  reactapp:
-  
-    build: 
-      context: ./client
-      dockerfile: Dockerfile
-    container_name: react-app
+      - ./client/src:/app
+    networks:
+      - app_puntajes
+#####################
+  puntajes-tool-pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=bd@bd.com
+      - PGADMIN_DEFAULT_PASSWORD=test123!
     ports:
-      - "5001:3000"
+      - "6001:80"
     volumes:
-      - ./client/src:/App
+      - volumen_pgadmin_data:/var/lib/pgadmin
+    networks:
+      - app_puntajes
+####################
+volumes:
+  volumen_bd_puntajes:
+  volumen_pgadmin_data:
+####################
+networks:
+  app_puntajes:
+    name: network_app_puntajes
