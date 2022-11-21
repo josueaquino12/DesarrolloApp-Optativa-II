@@ -9,18 +9,30 @@ services:
     container_name: puntajes-api
     ports:
       - "5001:8080"
-    volumes:
-      - ./server/src:/app
+    #volumes:
+    # - ./server/src:/app
     networks:
-      - app_puntajes
+      - app_unpazforms
     environment:
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+####################
+  unpazforms-frontend-web:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: unpazforms-frontend-web
+    ports:
+      - "5000:3000"
+    #volumes:
+      #- ./client/src:/app
+    networks:
+      - app_unpazforms
 ######################
-  puntajes-bd:
+  unpazforms_bd:
     image: postgres:14.5-bullseye
-    container_name: puntajes-bd
+    container_name: unpazforms_bd
     environment:
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
@@ -29,19 +41,7 @@ services:
       - ./extra/BD_01_DDL.sql:/docker-entrypoint-initdb.d/BD_01_DDL.sql
       - volumen_bd_puntajes:/var/lib/postgresql/data
     networks:
-      - app_puntajes
-####################
-  puntajes-frontend-web:
-    build:
-      context: ./client
-      dockerfile: Dockerfile
-    container_name: puntajes-frontend-web
-    ports:
-      - "5000:3000"
-    volumes:
-      - ./client/src:/app
-    networks:
-      - app_puntajes
+      - app_unpazforms
 #####################
   puntajes-tool-pgadmin:
     image: dpage/pgadmin4
@@ -53,12 +53,12 @@ services:
     volumes:
       - volumen_pgadmin_data:/var/lib/pgadmin
     networks:
-      - app_puntajes
+      - app_unpazforms
+###################
+networks:
+  app_unpazforms:
+    name: network_app_unpazforms
 ####################
 volumes:
   volumen_bd_puntajes:
   volumen_pgadmin_data:
-####################
-networks:
-  app_puntajes:
-    name: network_app_puntajes

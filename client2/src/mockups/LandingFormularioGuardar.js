@@ -1,12 +1,14 @@
-
 import React, {Component} from 'react'
-import '../App.css'
+import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
  
-class LandingEdicionForms extends Component{
-
-    render() {
-
+function LandingFormularioGuardar (){
+ 
+    const state = {
+        titulo: "",
+        descripcion: "Dessssssss",
+        componentes: [],
+    }
         return(
             
         <div class="container">
@@ -18,8 +20,8 @@ class LandingEdicionForms extends Component{
              <div class="row">
 
                 <div class="col-auto ">
-                <h1>Título del formulario</h1>
-                <h4>Descripción</h4>
+                <h1>tttt</h1>
+                <h4>Descripción {this.props.location.prueba}</h4>
                 </div>
 
                 <div class="col offset-md-4">
@@ -67,8 +69,7 @@ class LandingEdicionForms extends Component{
          </div>
         </div>
         
-        )
+        );
     }
-}
 
-export default LandingEdicionForms
+export default LandingFormularioGuardar
