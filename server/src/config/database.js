@@ -5,7 +5,7 @@ const sequelize = new Sequelize(
     `${process.env.POSTGRES_USER}`,
     `${process.env.POSTGRES_PASSWORD}`,
     {
-    host: `puntajes-bd`,
+    host: `unpazforms_bd`,
     dialect: 'postgres',
     logging: (str) => { console.log("Sequelize: "+str) },
     define: {
