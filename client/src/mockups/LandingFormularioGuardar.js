@@ -1,14 +1,8 @@
-import React, {Component} from 'react'
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
  
 function LandingFormularioGuardar (){
  
-    const state = {
-        titulo: "",
-        descripcion: "Dessssssss",
-        componentes: [],
-    }
         return(
             
         <div class="container">

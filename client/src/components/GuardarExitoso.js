@@ -28,8 +28,6 @@ render(){
             {/*Panel publicidad*/}
             <div class="col-3  border border-5">
               <h3 class="text-center">Campos para agregar al formulario</h3>
-
-              {/*<button type="button" onClick={handlerAddText} class="btn btn-outline-success btn-lg">Agregar Texto <i class="fa-solid fa-pen-to-square"></i></button>*/}
             </div>
           </div>
         </div>

@@ -10,15 +10,6 @@ import axios from 'axios'
 const urlpost = "http://localhost:5001/api/v1/formulario/";
 const urlget = "http://localhost:5001/api/v1/formulario/";
 
-//constande de prueba para renderizar
-/*const componentesprueba = [
-  { idComponente: uuid(), idtipocomponente: "text", labelname: uuid() },
-  { idComponente: uuid(), idtipocomponente: "condicional", labelname: "pregunta2" },
-  { idComponente: uuid(), idtipocomponente: "text", labelname: "pregunta3" },
-  { idComponente: uuid(), idtipocomponente: "text", labelname: "pregunta4" },
-  { idComponente: uuid(), idtipocomponente: "condicional", labelname: "pregunta5" }
-];*/
-
 class LandingEdicionForms extends Component {
 
   //estado
@@ -44,20 +35,17 @@ class LandingEdicionForms extends Component {
     })
   }
 
-  //captura el titulo y la desc para guardarlo en el estado
   handleChangeTitulo = e => {
     this.setState({
       titulo: e.target.value})
    
   }
 
-  //creo que no hace falta porque trae el nombre a cambiar en "e" lo dejo por las dudas
   handleChangeDescripcion = e => {
     this.setState({
       descripcion:e.target.value});
   }
 
-  //captura los valores de los campos
   handleChangeComponentes = e => {
     let inputs = this.state.componentes.slice();
     for (let i in inputs) {
@@ -166,7 +154,6 @@ class LandingEdicionForms extends Component {
             <div class="col-3  border border-5">
               <h3 class="text-center">Campos para agregar al formulario</h3>
 
-              {/*<button type="button" onClick={handlerAddText} class="btn btn-outline-success btn-lg">Agregar Texto <i class="fa-solid fa-pen-to-square"></i></button>*/}
               <button type="button" onClick={() => this.insertarComponenteEnLista("text")} class="btn btn-outline-success btn-lg">Agregar Texto <i class="fa-solid fa-pen-to-square"></i></button>
               <br></br>
               <br></br>
@@ -184,8 +171,6 @@ class LandingEdicionForms extends Component {
             <div class="col-3  border border-5"><h1>Publicidad</h1></div>
             {/*Panel de creacion del formulario*/}
             <div class="col-6  border border-5">
-              {/*<h1>Título del formulario</h1>*/}
-              {/*<h3>Descripción</h3>*/}
               <input name="titulo" type="text" class="form-control" placeholder="Título del formulario" aria-label="Título del formulario" value = {this.state.titulo} disabled></input>
               <input name="descripcion" type="text" class="form-control" placeholder="Descripción" aria-label="Descripción"  value = {this.state.descripcion} disabled></input>
 
@@ -230,8 +215,6 @@ class LandingEdicionForms extends Component {
             {/*Panel publicidad*/}
             <div class="col-3  border border-5">
               <h3 class="text-center">Campos para agregar al formulario</h3>
-
-              {/*<button type="button" onClick={handlerAddText} class="btn btn-outline-success btn-lg">Agregar Texto <i class="fa-solid fa-pen-to-square"></i></button>*/}
 
 
             </div>

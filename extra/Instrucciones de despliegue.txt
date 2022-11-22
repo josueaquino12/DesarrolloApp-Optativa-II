@@ -1,0 +1,61 @@
+
+##listar contenedores
+docker container ls -a
+
+##listar imagenes
+sudo docker images
+
+##contraseña pgadmin
+bd@bd.com
+test123!
+
+##conexion pgadmin
+POSTGRES_DB=unpazforms_bd
+POSTGRES_USER=unpazforms_bd_usuario
+POSTGRES_PASSWORD=unpazforms_bd_pass
+
+##actualizar lista de paquetes
+1 sudo apt-get update
+
+##contraseña superusuario
+2 instroducir contraseña
+
+##Instalar nodejs
+3 sudo apt-get install nodejs
+
+##Instalar git
+4 sudo apt-get install git
+
+##A continuación, instale algunos paquetes de requisitos previos que permitan a apt usar paquetes a través de HTTPS:
+5 sudo apt install apt-transport-https ca-certificates curl software-properties-common
+
+##Luego, añada la clave de GPG para el repositorio oficial de Docker en su sistema:
+6 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+##Agregue el repositorio de Docker a las fuentes de APT:
+7 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+
+##A continuación, actualice el paquete de base de datos con los paquetes de Docker del repositorio recién agregado:
+8 sudo apt update
+
+##Asegúrese de estar a punto de realizar la instalación desde el repositorio de Docker en lugar del repositorio predeterminado de Ubuntu:
+9 apt-cache policy docker-ce
+
+##Observe que docker-ce no está instalado, pero la opción más viable para la instalación es del repositorio de Docker para Ubuntu 20.04 (focal).
+10 sudo apt install docker-ce
+
+##Con esto, Docker quedará instalado, el demonio se iniciará y el proceso se habilitará para ejecutarse en el inicio. Compruebe que funcione:
+11 sudo systemctl status docker
+
+##Dirigirse al directorio donde quieras clonar el proyecto
+12 cd directorio
+
+##clonar el repositorio
+13 git clone https://github.com/josueaquino12/DesarrolloApp-Optativa-II.git
+
+##Dirigirse al directorio DesarrolloApp-Optativa-II
+14 cd DesarrolloApp-Optativa-II
+
+##ejecutar el docker-compose
+15 docker-compose up
+

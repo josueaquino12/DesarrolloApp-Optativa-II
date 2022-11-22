@@ -2,7 +2,9 @@ FROM node:alpine3.15
 
 WORKDIR /app
 
-COPY package*.json .
+COPY package.json .
+
+COPY package-lock.json .
 
 RUN npm install
 
@@ -13,6 +15,8 @@ RUN npm install --save react-router-dom
 RUN npm install bootstrap --save
 
 RUN npm install axios --save
+
+RUN npm install --save @fortawesome/free-solid-svg-icons
 
 RUN npm run build
 

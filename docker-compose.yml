@@ -2,11 +2,11 @@ version: '3'
 
 services:
 #################
-  puntajes-api:
+  unpazforms-api:
     build:
       context: ./server/src
       dockerfile: Dockerfile
-    container_name: puntajes-api
+    container_name: unpazforms-api
     ports:
       - "5001:8080"
     #volumes:
@@ -39,11 +39,11 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes: 
       - ./extra/BD_01_DDL.sql:/docker-entrypoint-initdb.d/BD_01_DDL.sql
-      - volumen_bd_puntajes:/var/lib/postgresql/data
+      - volumen_bd_unpazforms:/var/lib/postgresql/data
     networks:
       - app_unpazforms
 #####################
-  puntajes-tool-pgadmin:
+  unpazforms-tool-pgadmin:
     image: dpage/pgadmin4
     environment:
       - PGADMIN_DEFAULT_EMAIL=bd@bd.com
@@ -60,5 +60,5 @@ networks:
     name: network_app_unpazforms
 ####################
 volumes:
-  volumen_bd_puntajes:
+  volumen_bd_unpazforms:
   volumen_pgadmin_data:

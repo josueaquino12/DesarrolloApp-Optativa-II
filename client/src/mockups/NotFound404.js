@@ -8,8 +8,6 @@ class NotFound404 extends Component{
     render() {
 
         return(
-            /*container position-relative*/
-       
 
         <div class="bg-primary bg-gradient">
             <h1>404: Página no encontrada</h1>

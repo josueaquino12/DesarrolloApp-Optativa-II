@@ -1,10 +1,6 @@
 const Formulario = require('../models/Formulario.js')
 const Componente = require('../models/Componente.js')
-const TipoComponente = require('../models/TipoComponente.js')
-const database = require('../config/database.js');
 
-
-//TERMINADO
 exports.post = async (req, res, next) => {
 
     try { 
@@ -36,7 +32,7 @@ exports.post = async (req, res, next) => {
         return next("ESTE ES EL ERROR: " + error)
     }
 }
-//TERMINADO
+
 exports.getFormularioId = async (req, res, next) => {
 
     let idformulario = req.params.id
@@ -64,7 +60,6 @@ exports.getFormularioId = async (req, res, next) => {
     }
 }
 
-//TERMINADO
 exports.delete = async (req, res, next) => {
 
     let idformulario = req.params.id

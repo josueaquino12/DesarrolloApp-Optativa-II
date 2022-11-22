@@ -10,8 +10,6 @@ class Navbar extends Component{
     render() {
 
         return(
-            /*container position-relative*/
-       
             <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
             <NavLink to="/"><a class="navbar-brand" href="*">UNPAZ FORMS</a></NavLink>

@@ -10,8 +10,6 @@ class HomePage extends Component{
     render() {
 
         return(
-            /*container position-relative*/
-       
 
         <div class="bg-primary bg-gradient">
             <div class="container position-relative py-5">
